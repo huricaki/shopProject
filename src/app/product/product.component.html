@@ -1,18 +1,23 @@
 <h3 *ngIf="products; else noProduct">{{title}}</h3>
-
+<div class="form-group">
+    <input class="form-control"
+     id="productName"
+    placeholder="Ürün Ara"
+    [(ngModel)]="filterText"/>
+</div>
+<br>
 <div class="row">
     <ng-template #noProduct>
         <div class="alert alert-secondary" role="alert">
             Bu Kategoride Ürün Yoktur!!
         </div>
     </ng-template>
-    <div *ngFor="let prdct of products" class="card" style="width: 18rem;">
+    <div *ngFor="let prdct of products | productFilter:filterText" class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="prdct.imageUrl" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">{{prdct.name}}  {{prdct.price}}</h5>
+            <h5 class="card-title">{{prdct.name}} {{prdct.price | currency:'USD': 'symbol':"1.2-2"}}</h5>
             <p class="card-text">{{prdct.description}}</p>
-            <a href="#" class="btn btn-primary">Sepete Ekle</a>
+            <a (click) = "addToCard(prdct)" class="btn btn-primary">Sepete Ekle</a>
         </div>
     </div>
-   
 </div>
