@@ -1,28 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';  
-import { Product } from '../product/product';
+import { Category } from '../category/category';
 import {  from, Observable, throwError } from 'rxjs';  
 import {tap, catchError} from'rxjs/operators';
-import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
 
   constructor(
     private http:HttpClient
   ) { }
-  path="http://localhost:3000/products";
+  path="http://localhost:3000/categories";
 
-  getProducts(categoryId: any):Observable<Product[]>{
-    //alert(categoryId);
-    let newpath=this.path;
-    if(categoryId){
-      newpath+="?categoryId="+categoryId;
-    }
+  getCategories():Observable<Category[]>{
    return this.http
-    .get<Product[]>(newpath).pipe(
+    .get<Category[]>(this.path).pipe(
       tap(data=>console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
