@@ -1,4 +1,5 @@
-<h3 *ngIf="products; else noProduct">{{title}}</h3>
+<!-- <h3 *ngIf="products; else noProduct">{{title}}</h3> -->
+<app-category></app-category>
 <div class="form-group">
     <input class="form-control"
      id="productName"
@@ -12,7 +13,7 @@
             Bu Kategoride Ürün Yoktur!!
         </div>
     </ng-template>
-    <div *ngFor="let prdct of products | productFilter:filterText" class="card" style="width: 18rem;">
+    <div  *ngFor="let prdct of products | productFilter:filterText" class="productbox" style=" width: 18rem;">
         <img class="card-img-top" [src]="prdct.imageUrl" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{prdct.name}} {{prdct.price | currency:'USD': 'symbol':"1.2-2"}}</h5>
