@@ -1,0 +1,39 @@
+<h3>Yeni Ürün Ekle</h3>
+<form [formGroup]="productAddForm" (ngSubmit)="add()">
+    <div class="form-control">
+        <input type="text" id="name" name="name" formControlName="name" class="form-control" placeholder="Ürün Adı">
+        <!-- <div class="alert alert-danger" *ngIf="productAddForm.get('name').hasError('required')&&productAddForm.get('name').dirty">Ürün Adı Zorunludur</div> -->
+    </div>
+    <br>
+    <div class="form-control">
+        <input type="text" id="description" name="description" formControlName="description" class="form-control"
+            placeholder="Açıklama">
+        <!-- <div class="alert alert-danger" *ngIf="productAddForm.get('description').hasError('required') && productAddForm.get('description').dirty">Ürün Adı Zorunludur</div> -->
+    </div>
+    <br>
+    <div class="form-control">
+        <input type="text" id="price" name="price" formControlName="price" placeholder="Ürün Fiyatı"
+            class="form-control">
+        <!-- <div class="alert alert-danger" *ngIf="productAddForm.get('price').hasError('required') && productAddForm.get('price').dirty">Ürün Adı Zorunludur</div> -->
+    </div>
+    <br>
+    <div class="form-control">
+        <input type="text" id="imageUrl" name="imageUrl" formControlName="imageUrl" class="form-control"
+            placeholder="Ürün Resmi">
+        <!-- <div class="alert alert-danger" *ngIf="productAddForm.get('name').hasError('required') && productAddForm.get('name').dirty">Ürün Adı Zorunludur</div> -->
+    </div>
+    <br>
+    <div class="form-group">
+        <select class="form-control" formControlName="categoryId" required id="categoryId" aria-required="true" name="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+            </option>
+        </select>
+        <!-- <div *ngIf="productAddForm.get('name').hasError('required') && productAddForm.get('name').touched" class="alert alert-danger">Kategori boş olamaz</div> -->
+
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">
+        Ürün Ekle
+    </button>
+</form>
